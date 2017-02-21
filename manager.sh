@@ -8,3 +8,5 @@ docker run --rm --name ucp \
  --admin-password password
 
  sudo docker swarm join-token worker | grep -v command > /vagrant/swarm-join.sh
+
+ docker stack deploy -c /vagrant/jenkins-stack.yml jenkins

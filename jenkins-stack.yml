@@ -1,0 +1,39 @@
+version: "3"
+services:
+  jenkins:
+    image: maaydin/jenkins-ddc-demo
+    ports:
+      - "8080:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+  jenkins-slave:
+    image: maaydin/jenkins-slave-ddc-demo
+    environment:
+      - ucp_address=192.168.35.10
+      - ucp_user=admin
+      - ucp_pass=password
+      - jenkins_url=http://jenkins:8080/
+      - node_name=agent
+    depends_on:
+      - jenkins
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 6
+        window: 120s
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M

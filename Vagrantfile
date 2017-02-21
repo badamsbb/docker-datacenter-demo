@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
     ddc1.vm.network :private_network, ip: "192.168.35.10"
     ddc1.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize ["modifyvm", :id, "--memory", 1024]
       v.customize ["modifyvm", :id, "--name", "ddc1"]
     end
 
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
 
     ddc2.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize ["modifyvm", :id, "--memory", 1024]
       v.customize ["modifyvm", :id, "--name", "ddc2"]
     end
 
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
 
     ddc3.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize ["modifyvm", :id, "--memory", 1024]
       v.customize ["modifyvm", :id, "--name", "ddc3"]
     end
 
